@@ -1,3 +1,5 @@
+import { Toaster } from "sonner";
+
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -35,6 +37,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="notion-theme"
           >
+            <Toaster position="bottom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
