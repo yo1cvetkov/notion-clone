@@ -22,6 +22,9 @@ import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 
+import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
+
 import { api } from "@/convex/_generated/api";
 
 import { Item } from "./item";
@@ -37,6 +40,10 @@ import { TrashBox } from "./trash-box";
 
 export function Navigation() {
   const pathname = usePathname();
+
+  const search = useSearch();
+
+  const settings = useSettings();
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -161,8 +168,8 @@ export function Navigation() {
         <div>
           <UserItem />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
-          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
+          <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
         </div>
         <div className="mt-4">
           <DocumentList />
