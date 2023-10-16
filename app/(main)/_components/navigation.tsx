@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 import { useMediaQuery } from "usehooks-ts";
 
@@ -44,6 +44,8 @@ export function Navigation() {
   const params = useParams();
 
   const search = useSearch();
+
+  const router = useRouter();
 
   const settings = useSettings();
 
@@ -138,7 +140,9 @@ export function Navigation() {
   }
 
   function handleCreate() {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
 
     toast.promise(promise, {
       loading: "Creating a new note",
